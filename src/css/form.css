@@ -26,7 +26,8 @@
     color: #808080;
 }
 
-.search-button {
+.search-button,
+.more-button {
     border-radius: 8px;
     border: none;
     padding: 8px 16px;
@@ -42,7 +43,13 @@
     color: #fff;
 }
 
+.more-button {
+    margin: 20px auto;
+}
+
 .search-button:hover,
-.search-button:focus {
+.more-button:hover,
+.search-button:focus,
+.more-button:focus {
     background-color: #6c8cff;
 }
