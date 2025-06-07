@@ -6,7 +6,11 @@ import {
   clearGallery,
   showLoader,
   hideLoader,
+  showLoadMoreButton,
+  hideLoadMoreButton,
 } from './js/render-functions';
+
+const page = 1;
 
 document.querySelector('.form').addEventListener('submit', async e => {
   e.preventDefault();
@@ -27,11 +31,12 @@ document.querySelector('.form').addEventListener('submit', async e => {
     showLoader();
 
     try {
-      const images = await getImagesByQuery(searchText);
+      const images = await getImagesByQuery(searchText, page);
       const imgArr = images.hits;
 
       if (imgArr.length !== 0) {
         createGallery(imgArr);
+        showLoadMoreButton();
       } else {
         messageData.title =
           'Sorry, there are no images matching your search query. Please try again!';

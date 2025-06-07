@@ -3,6 +3,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const loader = document.querySelector('.loader');
 const gallery = document.querySelector('.gallery');
+const moreButton = document.querySelector('.more-button');
 
 const lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
@@ -66,4 +67,12 @@ export function showLoader() {
 
 export function hideLoader() {
   loader.style.display = 'none';
+}
+
+export function showLoadMoreButton() {
+  moreButton.style.display = 'block';
+}
+
+export function hideLoadMoreButton() {
+  moreButton.style.display = 'none';
 }

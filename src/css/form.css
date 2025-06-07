@@ -45,6 +45,8 @@
 
 .more-button {
     margin: 20px auto;
+    display: none;
+    width: 120px;
 }
 
 .search-button:hover,
