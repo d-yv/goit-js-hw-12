@@ -10,13 +10,29 @@ import {
   hideLoadMoreButton,
 } from './js/render-functions';
 
-const page = 1;
+let searchText = '';
+let page = 1;
+
+const moreButton = document.querySelector('.more-button');
+moreButton.addEventListener('click', async () => {
+  page += 1;
+  console.log(page, searchText);
+  try {
+    const nextPictures = await getImagesByQuery(searchText, page);
+    console.log(nextPictures.totalHits - page * 15);
+    if (nextPictures.totalHits <= page * 15) {
+      hideLoadMoreButton();
+    }
+    createGallery(nextPictures.hits);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+});
 
 document.querySelector('.form').addEventListener('submit', async e => {
   e.preventDefault();
-
-  let searchText = '';
-
+  page = 1;
   const messageData = {
     title: '',
     titleColor: 'red',
