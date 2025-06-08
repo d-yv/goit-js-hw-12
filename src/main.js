@@ -19,35 +19,37 @@ const messageData = {
 let searchText = '';
 let page = 1;
 
-// const gallery = document.querySelector('.gallery');
-// const domRect = gallery.getBoundingClientRect();
-// console.log(domRect);
-
 const moreButton = document.querySelector('.more-button');
 moreButton.addEventListener('click', async () => {
   page += 1;
-  console.log(page, searchText);
   hideLoadMoreButton();
   showLoader();
+
   try {
     const nextPictures = await getImagesByQuery(searchText, page);
-    console.log(nextPictures.totalHits - page * 15);
+
     if (nextPictures.totalHits <= page * 15) {
       hideLoadMoreButton();
       messageData.title =
         "We're sorry, but you've reached the end of search results.";
       iziToast.show(messageData);
+    } else {
+      showLoadMoreButton();
     }
 
     createGallery(nextPictures.hits);
 
-    window.scrollBy(0, window.innerHeight);
+    const galleryItem = document.querySelector('.gallery-item');
+    const cardRect = galleryItem.getBoundingClientRect();
+    window.scrollBy({
+      top: cardRect.width * 2 + 48, // 2 cards + 2*24 gap
+      behavior: 'smooth',
+    });
   } catch (error) {
     console.error(error);
     return null;
   } finally {
     hideLoader();
-    showLoadMoreButton();
   }
 });
 
@@ -66,7 +68,6 @@ document.querySelector('.form').addEventListener('submit', async e => {
     try {
       const images = await getImagesByQuery(searchText, page);
       const imgArr = images.hits;
-      console.log('imagesTotalHits, page*15  ', images.totalHits, page * 15);
 
       if (imgArr.length === 0) {
         messageData.title =
