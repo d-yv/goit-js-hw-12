@@ -1,7 +1,7 @@
-import{a as h,S as b,i as c}from"./assets/vendor-frHSA4Lh.js";(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const s of o.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function a(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerPolicy&&(o.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?o.credentials="include":e.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function i(e){if(e.ep)return;e.ep=!0;const o=a(e);fetch(e.href,o)}})();async function u(t,r=1){const a="https://pixabay.com/api/";try{return(await h.get(a,{params:{key:"50483673-3addba2370166e44fbbdc4d02",q:t,image_type:"photo",orientation:"horizontal",safesearch:!0,page:r,per_page:15}})).data}catch(i){return console.error(i),null}}const m=document.querySelector(".loader"),d=document.querySelector(".gallery"),g=document.querySelector(".more-button"),w=new b(".gallery a",{captionDelay:250,captionPosition:"bottom",captionsData:"alt"});function p(t){const r=t.map(({webformatURL:a,largeImageURL:i,tags:e,likes:o,views:s,comments:y,downloads:f})=>`<li class="gallery-item">
-              <a class="gallery-link" href=${i}>
+import{a as k,S as x,i as c}from"./assets/vendor-frHSA4Lh.js";(function(){const i=document.createElement("link").relList;if(i&&i.supports&&i.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const n of r.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&l(n)}).observe(document,{childList:!0,subtree:!0});function o(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function l(e){if(e.ep)return;e.ep=!0;const r=o(e);fetch(e.href,r)}})();async function d(t,i=1){const o="https://pixabay.com/api/";try{return(await k.get(o,{params:{key:"50483673-3addba2370166e44fbbdc4d02",q:t,image_type:"photo",orientation:"horizontal",safesearch:!0,page:i,per_page:15}})).data}catch(l){return console.error(l),null}}const g=document.querySelector(".loader"),y=document.querySelector(".gallery"),f=document.querySelector(".more-button"),S=new x(".gallery a",{captionDelay:250,captionPosition:"bottom",captionsData:"alt"});function p(t){const i=t.map(({webformatURL:o,largeImageURL:l,tags:e,likes:r,views:n,comments:v,downloads:L})=>`<li class="gallery-item">
+              <a class="gallery-link" href=${l}>
                 <img
-                  src=${a}
+                  src=${o}
                   alt="${e}"
                   width="360"
                   height="200"
@@ -9,21 +9,21 @@ import{a as h,S as b,i as c}from"./assets/vendor-frHSA4Lh.js";(function(){const 
                 <div class="markup-image">
                   <ul>
                     <li class="markup-image-text">likes</li>
-                    <li class="markup-image-value">${o}</li>      
+                    <li class="markup-image-value">${r}</li>      
                   </ul>
                   <ul>
                     <li class="markup-image-text">views</li>
-                    <li class="markup-image-value">${s}</li>      
+                    <li class="markup-image-value">${n}</li>      
                   </ul>
                   <ul>
                     <li class="markup-image-text">comments</li>
-                    <li class="markup-image-value">${y}</li>      
+                    <li class="markup-image-value">${v}</li>      
                   </ul>
                   <ul>
                     <li class="markup-image-text">downloads</li>
-                    <li class="markup-image-value">${f}</li>      
+                    <li class="markup-image-value">${L}</li>      
                   </ul>
                 </div>
               </a>
-            </li>`).join("");d.insertAdjacentHTML("beforeend",r),w.refresh()}function L(){d.innerHTML=""}function v(){m.style.display="block"}function k(){m.style.display="none"}function x(){g.style.display="block"}function S(){g.style.display="none"}let n="",l=1;const q=document.querySelector(".more-button");q.addEventListener("click",async()=>{l+=1,console.log(l,n);try{const t=await u(n,l);console.log(t.totalHits-l*15),t.totalHits<=l*15&&S(),p(t.hits)}catch(t){return console.error(t),null}});document.querySelector(".form").addEventListener("submit",async t=>{t.preventDefault(),l=1;const r={title:"",titleColor:"red",position:"topRight"},a=t.target.elements["search-text"].value.trim();if(a!==""){n=a,L(),v();try{const e=(await u(n,l)).hits;e.length!==0?(p(e),x()):(r.title="Sorry, there are no images matching your search query. Please try again!",c.show(r))}catch(i){r.title="An error occurred while fetching images. Please try again later.",c.show(r),console.error("Fetch error:",i)}finally{k()}}else r.title="Form field must be filled in!",c.show(r);t.target.reset()});
+            </li>`).join("");y.insertAdjacentHTML("beforeend",i),S.refresh()}function q(){y.innerHTML=""}function h(){g.style.display="block"}function w(){g.style.display="none"}function b(){f.style.display="block"}function u(){f.style.display="none"}const s={title:"",titleColor:"red",position:"topRight"};let m="",a=1;const H=document.querySelector(".more-button");H.addEventListener("click",async()=>{a+=1,console.log(a,m),u(),h();try{const t=await d(m,a);console.log(t.totalHits-a*15),t.totalHits<=a*15&&(u(),s.title="We're sorry, but you've reached the end of search results.",c.show(s)),p(t.hits),window.scrollBy(0,window.innerHeight)}catch(t){return console.error(t),null}finally{w(),b()}});document.querySelector(".form").addEventListener("submit",async t=>{t.preventDefault(),u(),a=1;const i=t.target.elements["search-text"].value.trim();if(i!==""){m=i,q(),h();try{const o=await d(m,a),l=o.hits;if(console.log("imagesTotalHits, page*15  ",o.totalHits,a*15),l.length===0){s.title="Sorry, there are no images matching your search query. Please try again!",c.show(s);return}p(l),o.totalHits<=a*15?u():b()}catch(o){s.title="An error occurred while fetching images. Please try again later.",c.show(s),console.error("Fetch error:",o)}finally{w()}}else s.title="Form field must be filled in!",c.show(s);t.target.reset()});
 //# sourceMappingURL=index.js.map
